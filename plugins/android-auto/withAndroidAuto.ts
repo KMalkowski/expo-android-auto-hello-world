@@ -1,11 +1,18 @@
 import { ExpoConfig } from "expo/config";
 import configPlugins from "@expo/config-plugins";
+import fs from "fs/promises";
+import path from "path";
 
-const { AndroidConfig, withAndroidManifest, createRunOncePlugin } =
-  configPlugins;
+const {
+  AndroidConfig,
+  withAndroidManifest,
+  createRunOncePlugin,
+  withDangerousMod,
+} = configPlugins;
 
 const withAndroidAuto = (config: ExpoConfig) => {
   config = manifestModifier(config);
+  config = withAndroidAutoDependency(config);
   return config;
 };
 
@@ -74,6 +81,31 @@ const manifestModifier = (config: ExpoConfig) => {
 
     return config;
   });
+};
+
+const withAndroidAutoDependency = (config: ExpoConfig) => {
+  return withDangerousMod(config, [
+    "android",
+    async (props) => {
+      const buildGradlePath = path.join(
+        props.modRequest.platformProjectRoot,
+        "app",
+        "build.gradle",
+      );
+      const buildGradleContent = await fs.readFile(buildGradlePath, "utf-8");
+
+      if (!buildGradleContent.includes("androidx.car.app:app:1.7.0-rc01")) {
+        const updatedContent = buildGradleContent.replace(
+          /dependencies\s*{/,
+          `dependencies {
+    implementation "androidx.car.app:app:1.7.0-rc01"`,
+        );
+        await fs.writeFile(buildGradlePath, updatedContent);
+      }
+
+      return props;
+    },
+  ]);
 };
 
 export default createRunOncePlugin(withAndroidAuto, "withAndroidAuto");
