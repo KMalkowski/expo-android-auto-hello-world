@@ -13,3 +13,5 @@ Prerequisite:
 
   - Update the com.anonymous.expoandroidautohelloworld path to match your project name and path as described in the next step.
   - Add the [permissions](https://developer.android.com/reference/androidx/car/app/CarAppPermission) for templates and other features required by your specific use case.
+
+4. Modify the build.gradle file to include the required [androidx car app dependency](https://developer.android.com/jetpack/androidx/releases/car-app). See the "build.gradle" commit in this repo.
