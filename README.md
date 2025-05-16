@@ -21,3 +21,5 @@ Prerequisite:
   - Add a basic CarAppService.kt.
   - Add your first screen - HelloWorldScreen.kt.
   - Add the required automotive_app_desc.xml file and copy it to appropriate location in the Android project.
+
+You can launch your app using [Desktop Head Unit](https://developer.android.com/training/cars/testing/dhu).
