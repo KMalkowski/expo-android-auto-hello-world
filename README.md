@@ -15,3 +15,9 @@ Prerequisite:
   - Add the [permissions](https://developer.android.com/reference/androidx/car/app/CarAppPermission) for templates and other features required by your specific use case.
 
 4. Modify the build.gradle file to include the required [androidx car app dependency](https://developer.android.com/jetpack/androidx/releases/car-app). See the "build.gradle" commit in this repo.
+
+5. Copy Kotlin files to the Android project. See the "kotlin src" commit in this repo.
+  - Create a new plugins/android-auto/src folder.
+  - Add a basic CarAppService.kt.
+  - Add your first screen - HelloWorldScreen.kt.
+  - Add the required automotive_app_desc.xml file and copy it to appropriate location in the Android project.
