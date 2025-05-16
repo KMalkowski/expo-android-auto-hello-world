@@ -36,6 +36,7 @@ const config: ExpoConfig = {
         backgroundColor: "#ffffff",
       },
     ],
+    "./plugins/android-auto/withAndroidAuto",
   ],
   experiments: {
     typedRoutes: true,
