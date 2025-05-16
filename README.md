@@ -8,3 +8,8 @@ Prerequisite:
 ```npm install -D ts-node```
 
 2. Create a plugins/android-auto folder and a withAndroidAuto.ts file, and add its path to the plugins array in your app.config.ts file. See the "withAndroidAuto.ts" commit in this repo.
+
+3. Modify the AndroidManifest.xml file to include the required androidx car app metadata entries and permissions using a helper from expo. Add a service entry to the manifest file that points to your CarAppService class implementation (the entry point to your car application). See the "AndroidManifest.xml" commit in this repo.
+
+  - Update the com.packageName.androidauto.CarAppService path to match your project name and path as described in the next step.
+  - Add the [permissions](https://developer.android.com/reference/androidx/car/app/CarAppPermission) for templates and other features required by your specific use case.
